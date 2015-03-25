@@ -860,6 +860,15 @@ if (is_siteadmin()) {
     $setting->set_updatedcallback('theme_reset_all_caches');
     $temp->add($setting);
 
+    // Logo file setting.
+    $name = 'theme_essential/footerlogo';
+    $title = get_string('logo', 'theme_essential');
+    $description = get_string('logodesc', 'theme_essential');
+    $setting = new admin_setting_configstoredfile($name, $title, $description, 'footerlogo');
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $temp->add($setting);
+
+
     $ADMIN->add('theme_essential', $temp);
 
     $temp = new admin_settingpage('theme_essential_frontpage', get_string('frontpageheading', 'theme_essential'));

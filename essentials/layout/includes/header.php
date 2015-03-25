@@ -140,9 +140,9 @@ echo $OUTPUT->doctype() ?>
                         </div>
                     </div>
                         <div class="nav-collapse collapse pull-<?php echo ($left) ? 'left' : 'right'; ?>">
-                            <div id="custom_menu_language">
+                            <!--<div id="custom_menu_language">
                                 <?php echo $OUTPUT->custom_menu_language(); ?>
-                            </div>
+                            </div>-->
                             <div id="custom_menu_courses">
                                 <?php echo $OUTPUT->custom_menu_courses(); ?>
                             </div>

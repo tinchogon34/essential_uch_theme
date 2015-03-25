@@ -117,6 +117,7 @@ $logoclass = 'ecol12';
 
 $oldnavbar = theme_essential_get_setting('oldnavbar');
 $haslogo = theme_essential_get_setting('logo');
+$hasfooterlogo = theme_essential_get_setting('footerlogo');
 
 /* Group Content */
 $hasboringlayout = theme_essential_get_setting('layout');

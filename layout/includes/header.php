@@ -49,7 +49,7 @@ require_once($OUTPUT->get_include_file('pagesettings'));
 <body <?php echo $OUTPUT->body_attributes($bodyclasses); ?>>
 
     <?php echo $OUTPUT->standard_top_of_body_html(); ?>
-
+    <div id="wrapper">
     <header role="banner">
         <div id="page-header" class="clearfix<?php echo ($oldnavbar) ? ' oldnavbar' : ''; ?>">
             <div class="container-fluid">
@@ -127,9 +127,9 @@ require_once($OUTPUT->get_include_file('pagesettings'));
                         </div>
                     </div>
                     <div class="nav-collapse collapse pull-<?php echo ($left) ? 'left' : 'right'; ?>">
-                        <div id="custom_menu_language">
+                        <!--<div id="custom_menu_language">
                             <?php echo $OUTPUT->custom_menu_language(); ?>
-                        </div>
+                        </div>-->
                         <div id="custom_menu_courses">
                             <?php echo $OUTPUT->custom_menu_courses(); ?>
                         </div>

@@ -69,6 +69,17 @@ function theme_essential_set_logo($css, $logo) {
     return $css;
 }
 
+function theme_essential_set_footer_logo($css, $logo) {
+    $tag = '[[setting:footerlogo]]';
+    if (!($logo)) {
+        $replacement = 'none';
+    } else {
+        $replacement = 'url(\'' . $logo . '\')';
+    }
+    $css = str_replace($tag, $replacement, $css);
+    return $css;
+}
+
 /**
  * Serves any files associated with the theme settings.
  *
@@ -89,6 +100,8 @@ function theme_essential_pluginfile($course, $cm, $context, $filearea, $args, $f
     if ($context->contextlevel == CONTEXT_SYSTEM) {
         if ($filearea === 'logo') {
             return $theme->setting_file_serve('logo', $args, $forcedownload, $options);
+        } else if ($filearea === 'footerlogo') {
+            return $theme->setting_file_serve('footerlogo', $args, $forcedownload, $options);
         } else if ($filearea === 'style') {
             theme_essential_serve_css($args[1]);
         } else if ($filearea === 'headerbackground') {
@@ -278,7 +291,7 @@ function theme_essential_process_css($css, $theme) {
     $css = theme_essential_set_color($css, $themenavcolor, '[[setting:themenavcolor]]', '#ffffff');
 
     // Set the footer colour.
-    $footercolor = theme_essential_hex2rgba(theme_essential_get_setting('footercolor'), '0.95');
+    $footercolor = theme_essential_hex2rgba(theme_essential_get_setting('footercolor'), '1');
     $css = theme_essential_set_color($css, $footercolor, '[[setting:footercolor]]', '#555555');
 
     // Set the footer text color.
@@ -358,6 +371,10 @@ function theme_essential_process_css($css, $theme) {
     // Set the background image for the logo.
     $logo = $theme->setting_file_url('logo', 'logo');
     $css = theme_essential_set_logo($css, $logo);
+
+    // Set the background image for the footer logo.
+    $logo = $theme->setting_file_url('footerlogo', 'footerlogo');
+    $css = theme_essential_set_footer_logo($css, $logo);
 
     // Set the background image for the header.
     $headerbackground = $theme->setting_file_url('headerbackground', 'headerbackground');
