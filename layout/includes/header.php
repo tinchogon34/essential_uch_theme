@@ -50,42 +50,55 @@ require_once($OUTPUT->get_include_file('pagesettings'));
 
     <?php echo $OUTPUT->standard_top_of_body_html(); ?>
     <div id="wrapper">
-    <header role="banner">
-        <div id="page-header" class="clearfix<?php echo ($oldnavbar) ? ' oldnavbar' : ''; ?>">
-            <div class="container-fluid">
-                <div class="row-fluid">
-                    <!-- HEADER: LOGO AREA -->
-                    <div class="<?php echo $logoclass;
-                    echo (!$left) ? ' pull-right' : ' pull-left'; ?>">
-                    <?php if (!$haslogo) { ?>
-                    <a class="textlogo" href="<?php echo preg_replace("(https?:)", "", $CFG->wwwroot); ?>">
-                        <i id="headerlogo" class="fa fa-<?php echo $OUTPUT->get_setting('siteicon'); ?>"></i>
-                        <?php echo $OUTPUT->get_title('header'); ?>
-                    </a>
-                    <?php } else { ?>
-                    <a class="logo" href="<?php echo preg_replace("(https?:)", "", $CFG->wwwroot); ?>" title="<?php print_string('home'); ?>"></a>
-                    <?php } ?>
+        <header role="banner">
+            <div id="page-header" class="clearfix<?php echo ($oldnavbar) ? ' oldnavbar' : ''; ?>">
+                <div class="container-fluid">
+                    <div class="row-fluid">
+                        <!-- HEADER: LOGO AREA -->
+                        <div class="<?php echo $logoclass;
+                        echo (!$left) ? ' pull-right' : ' pull-left'; ?>">
+                        <?php if (!$haslogo) { ?>
+                        <a class="textlogo" href="<?php echo preg_replace("(https?:)", "", $CFG->wwwroot); ?>">
+                            <i id="headerlogo" class="fa fa-<?php echo $OUTPUT->get_setting('siteicon'); ?>"></i>
+                            <?php echo $OUTPUT->get_title('header'); ?>
+                        </a>
+                        <?php } else { ?>
+                        <a class="logo" href="<?php echo preg_replace("(https?:)", "", $CFG->wwwroot); ?>" title="<?php print_string('home'); ?>"></a>
+                        <?php } ?>
+                    </div>
+
                 </div>
-                
             </div>
         </div>
-    </div>
-    <nav role="navigation">
-        <div id='essentialnavbar' class="navbar<?php echo ($oldnavbar) ? ' oldnavbar' : ''; ?> moodle-has-zindex">
-            <div class="container-fluid navbar-inner">
-                <div class="row-fluid">
-                    <div class="custommenus pull-<?php echo ($left) ? 'left' : 'right'; ?>">
-                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </a>
-                        <?php echo $OUTPUT->get_title('navbar'); ?>
+        <nav role="navigation">
+            <div id='essentialnavbar' class="navbar<?php echo ($oldnavbar) ? ' oldnavbar' : ''; ?> moodle-has-zindex">
+                <div class="container-fluid navbar-inner">
+                    <div class="row-fluid">
+                        <div class="custommenus pull-<?php echo ($left) ? 'left' : 'right'; ?>">
+                            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </a>
+                            <?php echo $OUTPUT->get_title('navbar'); ?>
 
-                        <div class="pull-<?php echo ($left) ? 'right' : 'left'; ?>">
-                           <?php if ($hassocialnetworks) { ?>
-                           <div id="socialnetworks">
+                            <div class="pull-<?php echo ($left) ? 'right' : 'left'; ?>" >
+                               <?php if (!isloggedin() or isguestuser()) { ?>
+                               <form action="<?php echo $CFG->httpswwwroot; ?>/login/index.php" method="post" id="login">
+                                  <div class="loginform" style="float: left;">
+                                    <div class="form-input" style="float: left;">
+                                    <input type="text" name="username" id="username" size="10" placeholder="Usuario"/>
+                                  </div>
+                                  <div class="form-input" style="float: left;">
+                                      <input type="password" name="password" id="password" size="6" placeholder="Clave" />
+                                  </div>
+                              </div>
+                              <button id="loginbtn" type="submit" style="float: left;"><em><i class="fa fa-sign-in"></i></em></button>
+                          </form>
+                          <?php } ?>
+                          <?php if ($hassocialnetworks) { ?>
+                          <div id="socialnetworks">
                             <ul class="socials unstyled">
                                 <?php
                                 echo $OUTPUT->render_social_network('googleplus');
